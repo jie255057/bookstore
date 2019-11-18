@@ -1,2 +1,10 @@
 <h1>新增書本</h1>
 
+<%= form_for(Book.new) do |form| %>
+
+<% end %>
+
+<form action="/books" method="post">
+  <input type="text" name="title">
+  <input type="submit" value="送出">
+</form>
