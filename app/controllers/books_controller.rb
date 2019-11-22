@@ -19,9 +19,27 @@ class BooksController < ApplicationController
         # redirect_to new_book_path, notice: '新增失敗'
       end
     end
+
+    def edit
+      # @book = Book.find_by(id: params[:id])
+      # redirect_to root_path unless @book, notice: '查無此書'
+      @book = Book.find(params[:id])
+    end
+
+    def update
+      @book = Book.find(params[:id])
+
+      if @book.update(book_params)
+        redirect_to root_path, notice: '更新成功'
+      else
+        render :edit
+      end
+    end
     
-    private
+
+
     # string parameters
+    private
     def book_params
         params.require(:book).permit(
                 :title,

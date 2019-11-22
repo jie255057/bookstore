@@ -6,8 +6,8 @@
 <% @book.each do |book| %>
   <li>
     <%= book.title %>
-    <%= link_to "編輯", '#' %>
-    <%= link_to "刪除", '#' %>
+    <%= link_to "編輯", edit_book_path(book.id) %>
+    <%= link_to "刪除", book_path(book.id), method:'delete'%>
   </li>
 <% end %>
 </ul>
