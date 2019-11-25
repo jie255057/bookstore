@@ -13,7 +13,7 @@
 <%= form_for(book) do |form| %>
   
   <div class="field">
-    <%= image_tag book.cover_image if book.cover_image.attached? %>
+    <%= cover_image_tag book %>
 
     <%= form.label :cover_image, '封面', class: 'label' %>
     <%= form.file_field :cover_image , class: 'input'%>
@@ -66,7 +66,7 @@
     </div>
     <div class="column">
       <div class="field">
-        <%= form.label :published_at, '發佈日期', class: 'label' %>
+        <%= form.label :published_at, '發佈日期', class: 'label'%>
         <%= form.text_field :published_at, class: 'input' %>
       </div>
     </div>
