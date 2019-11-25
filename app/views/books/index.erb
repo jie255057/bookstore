@@ -1,14 +1,65 @@
-<h1 class="title">書本列表</h1>
+<h1 class="title"><i class="fas fa-book"></i>書本列表</h1>
 
 <%= link_to "新增書本", new_book_path , class: 'button is-danger'%>
 
 
-<ul>
+<section class="columns is-multiline">
 <% @book.each do |book| %>
-  <li>
-    <%= link_to book.title, book_path(book.id) %>
-    <%= link_to "編輯", edit_book_path(book.id) %>
-    <%= link_to "刪除", book_path(book.id), method:'delete', data: {:confirm => "確定嗎?"} %>
-  </li>
+<div class="column is-3">
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <% if book.cover_image.attached? %>
+        <%= image_tag book.cover_image.variant(resize_to_limit: [300,300]) %>
+      <% else %>
+      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+      <% end %>
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4"><%= book.title %></p>
+        <p class="subtitle is-6">@johnsmith</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <br>
+      <%= link_to "編輯", edit_book_path(book.id) %>
+    </div>
+  </div>
+</div>
+</div>
 <% end %>
-</ul>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<ul>
+  <% @book.each do |book| %>
+    <li>
+      <%= link_to book.title, book_path(book.id) %>
+      <%= link_to "編輯", edit_book_path(book.id) %>
+      <%= link_to "刪除", book_path(book.id), method:'delete', data: {:confirm => "確定嗎?"} %>
+  </li>
+  <% end %>
+</li> -->
