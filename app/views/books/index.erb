@@ -2,9 +2,11 @@
 
 <%= link_to "新增書本", new_book_path , class: 'button is-danger'%>
 
+<%= paginate @books %>
+
 
 <section class="columns is-multiline">
-<% @book.each do |book| %>
+<% @books.each do |book| %>
 <div class="column is-3">
 <div class="card">
   <div class="card-image">
@@ -52,7 +54,7 @@
 
 <!-- 
 <ul>
-  <% @book.each do |book| %>
+  <% @books.each do |book| %>
     <li>
       <%= link_to book.title, book_path(book.id) %>
       <%= link_to "編輯", edit_book_path(book.id) %>

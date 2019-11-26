@@ -2,3 +2,13 @@
 .field_with_errors input{
     border: 1px solid red;
 }
+
+nav.pagination{
+    .page{
+        background-color: red;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        margin: 5px;
+    }
+}
