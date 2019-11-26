@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>書局後台</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%= render 'shared/backend/navbar' %>
+
+  <section class="section">
+    <div class="container"> 
+      <%= render 'shared/flash' if notice %>
+      <%= yield %>
+    </div>
+  </section>  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  </body>
+</html>
