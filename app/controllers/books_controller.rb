@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
 
     def index
-      @book = Book.all.where(on_sell: true).with_attached_cover_image
+      @book = Book.all.available.with_attached_cover_image
     end
 
     def show
@@ -37,7 +37,7 @@ class BooksController < ApplicationController
       # find_book
 
       if @book.update(book_params)
-        redirect_to root_path, notice: '更新成功'
+        redirect_to edit_book_path(@book), notice: '更新成功'
       else
         render :edit
       end
@@ -72,6 +72,10 @@ class BooksController < ApplicationController
                 :isbn13,
                 :cover_image,
                 :on_sell,
-                :published_at)
+                :published_at,
+                :publisher_id)
     end
+
+
+  
 end
