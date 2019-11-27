@@ -1,0 +1,29 @@
+<h1 class="title">管理出版社</h1>
+<%= link_to '新增出版社', new_admin_publisher_path , class: 'button'%>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Tel</th>
+      <th>Address</th>
+      <th>Note</th>
+      <th>Online</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= publisher.name %></td>
+        <td><%= publisher.tel %></td>
+        <td><%= publisher.address %></td>
+        <td><%= publisher.note %></td>
+        <td><%= publisher.online %></td>
+        <td><%= link_to '編輯', edit_admin_publisher_path(publisher) %></td>
+        <td><%= link_to '刪除', admin_publisher_path(publisher), method: 'delete' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
