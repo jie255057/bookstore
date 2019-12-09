@@ -1,6 +1,5 @@
-class Admin::PublishersController < ApplicationController
-  before_action :authenticate_user!
-
+class Admin::PublishersController < Admin::BaseController
+  
   def index
     @publishers = Publisher.all
   end
