@@ -47,6 +47,7 @@ end
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem "figaro"
+gem 'activerecord-session_store'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
