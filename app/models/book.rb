@@ -7,6 +7,7 @@ class Book < ApplicationRecord
 	# relationships
 	has_one_attached :cover_image
 	belongs_to :publisher
+	has_many :comments
 
 	# scopes
 	# def self.available
