@@ -1,1 +1,9 @@
 <h1>書名 : <%= @book.title %></h1>
+
+<figure class="image">
+    <%= cover_image_tag @book, width: 300, height: 300, fake_img: true %>
+</figure>
+
+<article class="book_description">
+<%= simple_format(@book.description) %>
+</article>
