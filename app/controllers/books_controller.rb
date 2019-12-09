@@ -5,7 +5,7 @@ class BooksController < ApplicationController
       @books = Book.available
                   .with_attached_cover_image
                   .page(params[:page])
-                  .per(4)
+                  .per(3)
     end
 
     def show

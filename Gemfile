@@ -45,6 +45,8 @@ group :development do
 end
 #devise
 gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem "figaro"
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
