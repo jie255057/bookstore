@@ -8,6 +8,8 @@ class Book < ApplicationRecord
 	has_one_attached :cover_image
 	belongs_to :publisher
 	has_many :comments
+	has_many :favorites
+  has_many :users, through: :favorites
 
 	# scopes
 	# def self.available

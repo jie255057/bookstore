@@ -20,14 +20,14 @@ class BooksController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.js{
-          render 'comment', layout: false 
+          render 'comment', layout: false
         }
       end
       # render js: 'alert("hi");'
       # render json: {status:'ok'}
       # redirect_to @book, notice: '留言成功'
     else
-      #失敗
+      render js: 'alert("發生錯誤");'
     end
   end
 
