@@ -30,6 +30,7 @@
         <%= book.published_at %>
         <br>
         <%= link_to "編輯", edit_admin_book_path(book), class: 'button is-light is-small' %>
+        <%= link_to "刪除", admin_book_path(book),method:'delete', class: 'button is-light is-small' %>
       </div>
     </div>
   </div>

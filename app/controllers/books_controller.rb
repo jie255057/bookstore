@@ -11,14 +11,21 @@ class BooksController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comment = @book.comments.order(id: :desc)
+    @comments = @book.comments.order(id: :desc)
   end
 
   def comment
     # @comment = Comment.new(comment_params, user: current_user, book: @book)
     @comment = @book.comments.build(comment_params)
     if @comment.save
-      redirect_to @book, notice: '留言成功'
+      respond_to do |format|
+        format.js{
+          render 'comment', layout: false 
+        }
+      end
+      # render js: 'alert("hi");'
+      # render json: {status:'ok'}
+      # redirect_to @book, notice: '留言成功'
     else
       #失敗
     end
