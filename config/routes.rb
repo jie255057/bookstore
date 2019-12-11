@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :publishers, only: [:show]
+  resources :categories, only: [:show]
 
   namespace :api do
     resources :books, only: [] do
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books
     resources :publishers
+    resources :categories
     root 'books#index'
   end
 end

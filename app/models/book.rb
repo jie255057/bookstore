@@ -7,6 +7,7 @@ class Book < ApplicationRecord
 	# relationships
 	has_one_attached :cover_image
 	belongs_to :publisher
+	belongs_to :category
 	has_many :comments
 	has_many :favorites
   has_many :users, through: :favorites
@@ -16,4 +17,8 @@ class Book < ApplicationRecord
 	# 	where(on_sell: true).where('list_price > 0')
 	# end
 	scope :available, -> { where(on_sell: true).where('list_price > 0') }
+
+	def favorited_by?(u)
+		favorites.exists?(user: u)
+	end
 end

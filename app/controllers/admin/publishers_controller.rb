@@ -9,7 +9,7 @@ class Admin::PublishersController < Admin::BaseController
   end
 
   def create
-    @publisher = Publisher.new(params[:id])
+    @publisher = Publisher.new(publisher_params)
     if @publisher.save
       redirect_to admin_publishers_path, notice: '新增成功'
     else
