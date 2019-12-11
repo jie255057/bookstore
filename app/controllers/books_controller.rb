@@ -11,6 +11,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @comment = Comment.new
     @comments = @book.comments.order(id: :desc)
   end
