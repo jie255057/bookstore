@@ -1,13 +1,13 @@
 <% if @category.errors.any? %>
   <ul>
-    <%= @category.errors.full_messages.each do |message| %>
+    <%= category.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 
 
-<%= form_for ([:admin,@category]) do |form| %>
+<%= form_for ([:admin,category]) do |form| %>
   <div class="field">
     <%= form.label :title, '標題' , class:'label'%>
     <%= form.text_field :title , class: 'input is-medium'%>

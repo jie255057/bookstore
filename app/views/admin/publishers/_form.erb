@@ -1,27 +1,36 @@
-<% if @publisher.errors.any? %>
-  <ul>
-    <%= @publisher.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= form_with model: [:admin, @publisher], local: true do |form| %>
+  <div class="columns">
+    <div class="column is-3">
+      <div class="field">
+        <%= form.label :name, '名稱', class: 'label' %>
+        <%= form.text_field :name, class: 'input' %>
+      </div>
+    </div>
 
+    <div class="column is-3">
+      <div class="field">
+        <%= form.label :tel, '電話', class: 'label' %>
+        <%= form.text_field :tel, class: 'input' %>
+      </div>
+    </div>
 
-<%= form_for ([:admin,@publisher]) do |form| %>
-  <%= form.label :name, '名稱' %>
-  <%= form.text_field :name %>
-<br>
-  <%= form.label :tel, '電話' %>
-  <%= form.number_field :tel %>
-<br>
-  <%= form.label :address, '地址' %>
-  <%= form.text_field :address %>
-<br>
-  <%= form.label :note, '說明' %>
-  <%= form.text_field :note %>
-<br>
-  <%= form.label :online, 'Online' %>
-  <%= form.check_box :online %>
-<br>
-  <%= form.submit %>
+    <div class="column is-6">
+      <div class="field">
+        <%= form.label :address, '地址', class: 'label' %>
+        <%= form.text_field :address, class: 'input' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :note, '備註', class: 'label' %>
+    <%= form.text_area :note, class: 'textarea' %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box :online %>
+    <%= form.label :online, '正常營運中', class: 'checkbox' %>
+  </div>
+
+  <%= form.submit class: 'button is-light' %>
 <% end %>
