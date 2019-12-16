@@ -18,4 +18,5 @@ class Cart
   def empty?
     @items.empty?
   end
+
 end
