@@ -9,4 +9,8 @@ class CartItem
   def increment!
     @quantity += 1
   end
+
+  def product
+    Book.find_by(id: product_id)
+  end
 end
