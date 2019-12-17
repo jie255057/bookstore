@@ -5,7 +5,7 @@ class Admin::BooksController < Admin::BaseController
     @books = Book.available
                 .with_attached_cover_image
                 .page(params[:page])
-                .per(3)
+                # .per()
   end
 
   def show

@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+	acts_as_paranoid
+
 	# validates
 	validates :title, presence: true
 	validates :isbn, :isbn13, presence: true, uniqueness: true
