@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :favorites
   has_many :books, through: :favorites
+  has_many :orders
 
   def employee?
     role.in? ['staff', 'boss', 'admin']
