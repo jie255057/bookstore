@@ -27,10 +27,10 @@
           <div class="content">
             <%= book.published_at %>
             <br>
-            <%= link_to "放到購物車", '/' %>
+            <%= link_to "放到購物車", add_cart_path(book), method: 'post' %>
           </div>
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
 </section>
