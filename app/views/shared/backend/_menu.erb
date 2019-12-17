@@ -3,7 +3,7 @@
       分類
     </p>
     <ul class="menu-list">
-      <% @categories.each do |category| %>
+      <% categories.each do |category| %>
       <li><%= link_to category.title, category_path(category) %></li>
       <% end %>
     </ul>
