@@ -23,7 +23,7 @@
             <p class="subtitle is-6">@johnsmith</p>
           </div>
         </div>
-        <div class="content">
+        <div class="content" data-controller="book">
           <%= book.published_at %>
           <br>
           <%= link_to "放到購物車", add_cart_path(book), method: 'post' %>

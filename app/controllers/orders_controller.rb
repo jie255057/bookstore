@@ -36,6 +36,8 @@ class OrdersController < ApplicationController
     order = current_user.orders.find_by(num: params[:id])
     order.cancel! if order.may_cancel?
 
+
+
     redirect_to orders_path, notice:"訂單#{order.num}已取消"
   end
   

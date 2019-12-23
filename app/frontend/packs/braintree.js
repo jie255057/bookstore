@@ -1,6 +1,6 @@
 import braintree from 'braintree-web-drop-in';
 
-document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('turbolinks:load',() => {
   let button = document.querySelector('#submit-button');
   let token = document.querySelector('#token').value;
 
