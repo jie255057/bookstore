@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       put :cancel
       get :pay
+      post :paid
     end
   end
 

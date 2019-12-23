@@ -28,27 +28,18 @@
           <% if user_signed_in? %>
 
           <div class="navbar-item has-dropdown is-hoverable">
-            <%= link_to current_user.email, edit_user_registration_path %>
-    
+            <a class="navbar-link">
+            <%= current_user.email %>
+            </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item">
-                我的訂單
-              </a>
-            <%= link_to '登出',destroy_user_session_path, method: 'delete', class:'navbar-item' %>
-              <a class="navbar-item">
-                Contact
-              </a>
+              <%= link_to "我的訂單", orders_path, class: 'navbar-item' %>
               <hr class="navbar-divider">
-              <a class="navbar-item">
-                Report an issue
-              </a>
+              <%= link_to "登出", destroy_user_session_path, method: 'delete', class: 'navbar-item' %>
             </div>
           </div>
-
-
           <% else %>
-          <%= link_to '註冊', new_user_registration_path, class: 'button is=primary' %>
-          <%= link_to '登入', user_session_path, class: 'button is-light' %>
+            <%= link_to '註冊', new_user_registration_path, class: 'button is=primary' %>
+            <%= link_to '登入', user_session_path, class: 'button is-light' %>
           <% end %>
         </div>
       </div>

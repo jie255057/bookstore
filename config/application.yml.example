@@ -13,3 +13,7 @@
 # Oauth
 google_app_id: 'your app id'
 google_app_secret: 'your app secret'
+
+merchant_id: 'braintre_merchant_id'
+public_key: 'braintre_public_key'
+private_key: 'braintre_private_key'
