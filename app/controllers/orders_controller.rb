@@ -1,5 +1,20 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+
+  layout 'book'
+
+  def index
+    @orders = current_user.orders.order(id: :desc)
+  end
+
+  def pay
+  end
+
+  def cancel
+    order = current_user.orders.find_by(num: params[:id])
+    order.cancel!
+    redirect_to orders_path, notice:"訂單#{order.num}已取消"
+  end
   
   def create
     @order = current_user.orders.build(order_params)
@@ -12,10 +27,10 @@ class OrdersController < ApplicationController
     
     if @order.save
       session['cart9527'] = nil
-      redirect_to root_path, notice: '訂單成立摟～'
+      redirect_to pay_order_path(@order.num), notice: '訂單成立摟～'
     else
       flash[:notice] = '欄位發生錯誤喔'
-      render 'carts/checkout'
+      redirect_to root_path
     end
   end
 

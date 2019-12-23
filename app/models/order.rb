@@ -6,8 +6,11 @@ class Order < ApplicationRecord
   validates :recipient, :tel, :address, presence: true
   validates :num, uniqueness: true
 
-  before_create :generate_num
+  before_save :generate_num
 
+  def total_price
+    order_item.reduce(0) { |sum, item| sum + item.sell_price }.to_i
+  end
   
   aasm column: 'state' do
     state :pending, initial: true

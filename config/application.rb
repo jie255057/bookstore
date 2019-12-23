@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Bookstore
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.time_zone = 'Taipei'
     config.load_defaults 6.0
     config.generators do |g|
       g.helper false

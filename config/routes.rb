@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :create] do
     member do
       put :cancel
+      get :pay
     end
   end
 
