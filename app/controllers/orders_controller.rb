@@ -8,20 +8,28 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    gateway = Braintree::Gateway.new(
-      environment: :sandbox,
-      merchant_id: ENV['braintree_merchant_id'],
-      public_key: ENV['braintree_public_key'],
-      private_key: ENV['braintree_private_key']
-    )
-
     @token = gateway.client_token.generate
     @order = current_user.orders.find_by(num: params[:id])
   end
 
   def paid
+    nonce = params[:nonce]
     order = current_user.orders.find_by(num: params[:id])
-    redirect_to orders_path, notice:'交易完成！'
+    
+    result = gateway.transaction.sale(
+      amount: order.total_price,
+      payment_method_nonce: nonce,
+      :options => {
+        :submit_for_settlement => true
+      }
+    )
+
+    if result.success?
+      order.pay!
+      redirect_to orders_path, notice:'交易完成！'
+    else
+      redirect_to orders_path, notice:'交易發生錯誤! #{result.transaction.status}'
+    end
   end
 
   def cancel
@@ -52,5 +60,14 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:recipient, :tel, :address, :note)
+  end
+
+  def gateway
+    gateway = Braintree::Gateway.new(
+      environment: :sandbox,
+      merchant_id: ENV['braintree_merchant_id'],
+      public_key: ENV['braintree_public_key'],
+      private_key: ENV['braintree_private_key']
+    )
   end
 end
