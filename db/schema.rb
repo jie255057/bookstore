@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_12_23_070310) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "published_at"
-    t.integer "publisher_id"
+    t.bigint "publisher_id"
     t.integer "category_id"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_books_on_deleted_at"
@@ -67,8 +70,8 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "user_id", null: false
-    t.integer "book_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_comments_on_book_id"
@@ -76,8 +79,8 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "book_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_favorites_on_book_id"
@@ -85,8 +88,8 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "book_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "book_id", null: false
     t.integer "quantity"
     t.decimal "sell_price"
     t.datetime "created_at", precision: 6, null: false
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "recipient"
     t.string "tel"
     t.string "address"
@@ -117,15 +120,6 @@ ActiveRecord::Schema.define(version: 2019_12_23_070310) do
     t.boolean "online", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.string "session_id", null: false
-    t.text "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
