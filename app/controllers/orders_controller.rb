@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     )
 
     if result.success?
-      order.pay!
+      order.pay!(transaction_id: result.transaction.id)
       redirect_to orders_path, notice:'交易完成！'
     else
       redirect_to orders_path, notice:'交易發生錯誤! #{result.transaction.status}'
@@ -34,11 +34,20 @@ class OrdersController < ApplicationController
 
   def cancel
     order = current_user.orders.find_by(num: params[:id])
-    order.cancel! if order.may_cancel?
+    if order.paid?
+      gateway.transaction.void(order.transaction_id)
+      result = gateway.transaction.refund(order.transaction_id)
 
-
-
-    redirect_to orders_path, notice:"訂單#{order.num}已取消"
+      if result.success?
+        order.cancel! if order.may_cancel?
+        redirect_to orders_path, notice: "訂單#{order.num}已取消並完成退款"
+      else
+        redirect_to orders_path, notice: "訂單#{order.num}退款發生錯誤"
+      end
+    else
+      order.cancel! if order.may_cancel?
+      redirect_to orders_path, notice: "訂單#{order.num}已取消"
+    end
   end
   
   def create
@@ -65,7 +74,7 @@ class OrdersController < ApplicationController
   end
 
   def gateway
-    gateway = Braintree::Gateway.new(
+    Braintree::Gateway.new(
       environment: :sandbox,
       merchant_id: ENV['braintree_merchant_id'],
       public_key: ENV['braintree_public_key'],

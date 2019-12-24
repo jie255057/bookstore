@@ -25,9 +25,6 @@ class BooksController < ApplicationController
           render 'comment', layout: false
         }
       end
-      # render js: 'alert("hi");'
-      # render json: {status:'ok'}
-      # redirect_to @book, notice: '留言成功'
     else
       render js: 'alert("發生錯誤");'
     end
