@@ -7,7 +7,6 @@ ruby '2.7.0'
 gem 'rails', '~> 6.0.1'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
-gem 'pg', '~> 1.1', '>= 1.1.4'
 # Use Puma as the app server
 gem "puma", ">= 4.3.1"
 # Use SCSS for stylesheets
@@ -32,6 +31,7 @@ gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'aasm', '~> 5.0', '>= 5.0.6'
 gem 'braintree', '~> 2.100'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
